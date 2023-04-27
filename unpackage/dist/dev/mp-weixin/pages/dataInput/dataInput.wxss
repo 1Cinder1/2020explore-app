@@ -1,0 +1,44 @@
+
+.top.data-v-a64d2c70 {
+	text-align: center;
+}
+.top view.data-v-a64d2c70:first-child {
+	color: rgb(23, 23, 37);
+	font-family: Inter;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 32px;
+}
+.top view.data-v-a64d2c70:last-child {
+	color: rgb(102, 112, 122);
+	font-family: Inter;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 22px;
+}
+.list.data-v-a64d2c70 {
+	margin-top: 30px;
+}
+.list .item.data-v-a64d2c70 {
+	margin-bottom: 16px;
+}
+.list .item .title.data-v-a64d2c70 {
+	color: rgb(120, 130, 138);
+	font-family: Inter;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 22px;
+	margin-bottom: 6px;
+}
+.btn.data-v-a64d2c70 {
+	height: 62px;
+	text-align: center;
+	background-color: rgb(26, 33, 49);
+	border-radius: 16px;
+	color: rgb(255, 255, 255);
+	font-family: Inter;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 62px;
+}
+

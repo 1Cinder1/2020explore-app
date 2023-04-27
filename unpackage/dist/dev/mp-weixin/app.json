@@ -1,6 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/home/home",
+    "pages/dataInput/dataInput",
+    "pages/glucose/glucose"
   ],
   "subPackages": [],
   "window": {
