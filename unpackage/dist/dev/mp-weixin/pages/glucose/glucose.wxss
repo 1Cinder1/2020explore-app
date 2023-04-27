@@ -1,0 +1,107 @@
+
+.u-nav-slot.data-v-1637b8e4 {
+	display: flex;
+	align-items: center;
+}
+.u-nav-slot .nav-pic.data-v-1637b8e4 {
+	margin: 0 4px;
+	border-radius: 50%;
+	background-color: black;
+	width: 22px;
+	height: 22px;
+}
+.u-nav-slot .nav-pic .img.data-v-1637b8e4 {
+	display: block;
+	margin-top: 50%;
+	margin-left: 43%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+.pic.data-v-1637b8e4 {
+	background-color: rgb(171, 158, 251);
+	border-radius: 0 0 24px 24px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.text .title.data-v-1637b8e4 {
+	color: rgba(26, 33, 49, 0.6);
+	font-family: Inter;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+}
+.text .context.data-v-1637b8e4 {
+	margin-top: 10px;
+	position: relative;
+	display: flex;
+}
+.text .context .data.data-v-1637b8e4 {
+	color: rgb(26, 33, 49);
+	font-family: Inter;
+	font-size: 36px;
+	font-weight: 700;
+	line-height: 44px;
+}
+.text .context .percent.data-v-1637b8e4 {
+	position: absolute;
+	left: 240px;
+	bottom: 0;
+	vertical-align: middle;
+}
+.text .context .percent ._img.data-v-1637b8e4 {
+	margin-right: 10px;
+}
+.pic .echarts.data-v-1637b8e4 {
+	margin: -20px 0;
+}
+.range.data-v-1637b8e4 {
+	width: 85%;
+	font-family: Inter;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 19px;
+	display: flex;
+	justify-content: space-between;
+	height: 41px;
+	align-items: center;
+	padding: 16px;
+	background: rgb(242, 242, 244);
+	border-radius: 20px;
+	margin-top: 20px;
+}
+.card.data-v-1637b8e4 {
+	width: 85%;
+	margin-top: 20px;
+	background: linear-gradient(90.00deg, rgba(249, 245, 242, 1.00) -1.79%, rgba(242, 229, 251, 1.00) 100%);
+	padding: 20px 16px 20px 16px;
+	border-radius: 20px;
+}
+.card .notice.data-v-1637b8e4 {
+	color: rgba(26, 33, 49, 0.4);
+	font-family: Inter;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 16px;
+}
+.card .title.data-v-1637b8e4 {
+	color: rgb(26, 33, 49);
+	font-family: Inter;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 29px;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+.card .context.data-v-1637b8e4 {
+	color: rgba(26, 33, 49, 0.5);
+	font-family: Inter;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.350000023841858;
+	overflow: hidden; /*超出的文本隐藏 */
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 超出多少行 */
+	-webkit-box-orient: vertical;
+}
+

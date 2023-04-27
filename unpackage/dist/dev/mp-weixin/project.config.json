@@ -1,29 +1,43 @@
 {
-	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": [],
-		"include": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": false,
-		"postcss": false,
-		"minified": false,
-		"newFeature": true,
-		"bigPackageSizeSupport": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.30.4",
-	"appid": "touristappid",
-	"projectname": "2020-app",
-	"condition": {},
-	"editorSetting": {
-		"tabIndent": "tab",
-		"tabSize": 4
-	}
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "bigPackageSizeSupport": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "touristappid",
+  "projectname": "2020explore-app",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "id": 0,
+          "name": "pages/glucose/glucose",
+          "pathName": "pages/glucose/glucose",
+          "query": ""
+        }
+      ]
+    }
+  }
 }
