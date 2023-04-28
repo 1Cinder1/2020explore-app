@@ -13,7 +13,9 @@
 				</navigator>
 			</view>
 			<view class="item">
-				<u-icon name="clock" labelColor="#ffffff" color="#ffffff" size="20" label="History"></u-icon>
+				<navigator url="../history/history" open-type="redirect">
+					<u-icon name="clock" labelColor="#ffffff" color="#ffffff" size="20" label="History"></u-icon>
+				</navigator>
 			</view>
 			<view class="item">
 				<u-icon name="heart" labelColor="#ffffff" color="#ffffff" size="20" label="Like"></u-icon>
