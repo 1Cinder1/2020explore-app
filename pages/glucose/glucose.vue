@@ -50,20 +50,61 @@
 				-2.7(37.5%)
 			</view>
 		</view>
-		<view class="card center">
-			<view class="notice">
-				KEY ADVISE
-			</view>
-			<view class="title">
-				<view>
-					Appropriate Exercise
+		<view class="past30Day">
+			<view class="past30Daytitle center">Past 30 Days</view>
+			<view class="card center" v-for="(item,index) in PastDayContent" :key="index">
+				<view class="past30DayCardTitle">
+					<view>
+						{{item.title}}
+					</view>
+					<view>
+						{{item.status}} 🥰
+					</view>
 				</view>
-				<view>
-					1.2H
+				<view style="border: 1px solid black;width:100%;
+    padding: 0 15.2px;margin-left: -16px;"></view>
+				<view class="past30Daycontext">
+					{{item.content}}
+				</view>
+				<view v-if="item.isShow" class="showMore" @click="showContent(item,index)">Show more</view>
+			</view>
+			
+		</view>
+		<view class="Advise">
+			<view class="Advisetitle center">Health Advise</view>
+			<view class="card center" v-for="i in 3" :key="i">
+				<view class="notice">
+					KEY ADVISE
+				</view>
+				<view class="title">
+					<view>
+						Appropriate Exercise
+					</view>
+					<view>
+						1.2H
+					</view>
+				</view>
+				<view class="context">
+					Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
+
 				</view>
 			</view>
-			<view class="context">
-				Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
+		</view>
+		<view class="glucose">
+			<view class="glucosetitle center">About Glucose</view>
+			<view class="card center" style="background: linear-gradient(90.00deg, rgba(249, 245, 242, 1.00) -1.79%, rgba(218, 213, 255, 1.00) 100%);">
+				<view class="glucoseImg">
+					<image mode="aspectFill" src="../../static/glucose.jpg" alt="">
+				</view>
+				<view class="title">
+					<view>
+						The risk of high glucose levels in the blood
+					</view>
+				</view>
+				<view class="context">
+					Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
+		
+				</view>
 			</view>
 		</view>
 	</view>
@@ -100,8 +141,29 @@
 						data: [34.8, 55.2, 43.6, 60.1, 57.3, 70.2, 74.6],
 						type: 'line',
 						smooth: true
-					}]
-				}
+					}],
+
+				},
+				PastDayContent:[
+					{
+						title:'Range of fluctuation:',
+						status:'Large',
+						content:'In order to help users better manage theircardiovascular and cerebrovascular health,Mailuoqingquanalso provides practical.',
+						isShow:true
+					},
+					{
+						title:'General trend:',
+						status:'Upwards',
+						content:'In order to help users better manage theircardiovascular and cerebrovascular health,Mailuoqingquanalso provides practical.',
+						isShow:true
+					},
+					{
+						title:'Average Value',
+						status:'High',
+						content:'In order to help users better manage theircardiovascular and cerebrovascular health,Mailuoqingquanalso provides practical.',
+						isShow:true
+					}
+				],
 			}
 		},
 		created() {
@@ -116,6 +178,12 @@
 			},
 			backOne() {
 				uni.navigateBack()
+			},
+			showContent(item,index) {
+				console.log(event)
+				item.isShow = false
+				let past30Daycontext = document.querySelectorAll('.past30Daycontext')
+				past30Daycontext[index].style.webkitLineClamp = "10"
 			}
 		}
 	}
@@ -218,12 +286,30 @@
 		margin-top: 20px;
 	}
 
+	.Advise {
+		margin-top: 20px;
+	}
+
+	.Advisetitle {
+		margin-left: 36%;
+		font-weight: 600;
+	}
+
+	.past30Daytitle {
+		margin-top: 20rpx;
+		margin-left: 36%;
+		font-weight: 600;
+	}
+	.glucosetitle{
+		margin-left: 36%;
+		font-weight: 600;
+	}
 	.card {
 		width: 85%;
-		margin-top: 20px;
 		background: linear-gradient(90.00deg, rgba(249, 245, 242, 1.00) -1.79%, rgba(242, 229, 251, 1.00) 100%);
 		padding: 20px 16px 20px 16px;
 		border-radius: 20px;
+		margin-top: 0.5rem;
 	}
 
 	.card .notice {
@@ -253,7 +339,56 @@
 		line-height: 1.350000023841858;
 		overflow: hidden; //超出的文本隐藏
 		display: -webkit-box;
+		word-break: break-all;
 		-webkit-line-clamp: 2; // 超出多少行
 		-webkit-box-orient: vertical;
+	}
+
+	.past30DayCardTitle {
+		color: rgb(26, 33, 49);
+		font-family: Inter;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 29px;
+		display: flex;
+		justify-content: space-between;
+		margin: 10px 0;
+	}
+
+	.past30Daycontext {
+		width: 80%;
+		overflow: hidden;
+		margin-top: 20rpx;
+		font-size: 16px;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		word-break: break-all;
+		-webkit-box-orient: vertical;
+	}
+
+	.showMore {
+		width: 100%;
+		height: 70rpx;
+		display: flex;
+		justify-content: flex-end;
+		line-height: 50rpx;
+		font-size: 20rpx;
+		position: absolute;
+		bottom: 10rpx;
+		right: 0rpx;
+		background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+	}
+	.glucose{
+		margin-top: 20px;
+	}
+	.glucoseImg{
+		width:640rpx;
+		height: 300rpx;
+	}
+	.glucoseImg>image{
+		width: 100%;
+		height: 100%;
+		border-radius:20rpx;
 	}
 </style>

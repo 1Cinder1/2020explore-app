@@ -28,9 +28,10 @@
 				</uni-forms-item>
 				<uni-forms-item class="formItem" name="EmailCode" label="Email verification code">
 					<view class="formIpt" style="display: flex;">
-						<input style="width: 200rpx;" type="number" v-model="FormData.EmailCode" placeholder="Please enter emailCode">
-						<button class="EmailCodeBtn" :class="{active:send}"
-							:disabled="send" @click="getEmailCode">{{EmailCodeIptContent}}</button>
+						<input style="width: 200rpx;" type="number" v-model="FormData.EmailCode"
+							placeholder="Please enter emailCode">
+						<button class="EmailCodeBtn" :class="{active:send}" :disabled="send"
+							@click="getEmailCode">{{EmailCodeIptContent}}</button>
 					</view>
 
 				</uni-forms-item>
@@ -41,16 +42,18 @@
 				</uni-forms-item>
 				<uni-forms-item class="formItem" name="Cofirmpassword" label="Cofirm password">
 					<view class="formIpt">
-						<input type="password" v-model="FormData.Cofirmpassword" placeholder="Please confirm the password">
+						<input type="password" v-model="FormData.Cofirmpassword"
+							placeholder="Please confirm the password">
 					</view>
 				</uni-forms-item>
 				<button class="submitBtn" form-type="submit" @click="formSubmit">Sign Up</button>
 			</uni-forms>
-		
+
 		</view>
 	</view>
 </template>
 <script>
+	import {getEmailCode} from "@/api/request.js"
 	export default {
 		data() {
 			return {
@@ -91,9 +94,19 @@
 					},
 					Cofirmpassword: {
 						rules: [{
-							required: true,
-							errorMessage: 'Password cannot be empty'
-						}]
+								required: true,
+								errorMessage: 'Password cannot be empty'
+							},
+							{
+								validateFunction: (rules,value,callback) => {
+									if (value != this.FormData.Password) {
+										return false
+									}else{
+										return true
+									}
+								},
+							}
+						]
 					},
 				},
 				send: false,
@@ -101,21 +114,36 @@
 				EmailCodeIptContent: "Send verification code"
 			}
 		},
+		onReady() {
+				// 需要在onReady中设置规则
+				this.$refs.forms.setRules(this.rules)
+			},
 		methods: {
 			formSubmit(e) {
-				console.log(e.detail.value)
 				this.$refs.forms.validate().then(res => {
 					console.log('success', res);
 					uni.showToast({
 						title: `校验通过`,
-						success: () => {
-							//进行request请求
+						success: async () => {
+							//发送request请求，这里不许用进行数据储存，所有我们直接发送request请求
+							try{
+								let result = await this.$requests.userRegister({
+									email:res.Email,
+									emailCode:res.EmailCode,
+									password:res.Password
+								})
+								if(result.success==1){
+								//成功后跳转到start界面
+								uni.navigateTo({
+									url: '/pages/start/start'
+								})	
+								}
+								
+							}catch(e){
+								//TODO handle the exception
+								alert(e.message)
+							}
 							
-							
-							//成功后跳转到start界面
-							uni.navigateTo({
-								url: '/pages/start/start'
-							})
 						}
 					})
 				}).catch(err => {
@@ -128,20 +156,23 @@
 					url: '/pages/SignIn/SignIn'
 				})
 			},
-			getEmailCode() {
+			async getEmailCode() {
 				this.EmailCodeIptContent = `Resend at ${this.countDown}s later`
 				this.send = true
-				 let timer=setInterval(() => {
+				let timer = setInterval(() => {
 					this.countDown--
 					this.EmailCodeIptContent = `Resend at ${this.countDown}s later`
 					this.send = true
-					if(this.countDown==0){
+					if (this.countDown == 0) {
 						clearInterval(timer)
-						this.countDown=60
+						this.countDown = 60
 						this.send = false
 						this.EmailCodeIptContent = `Resend`
 					}
 				}, 1000)
+				await getEmailCode(this.FormData.Email)
+				//await this.$requests.getEmailCode(this.FormData.Email)
+				
 			}
 		}
 	}
@@ -179,6 +210,7 @@
 		color: #3371d3;
 		margin-left: 10rpx;
 	}
+
 	.formItem {
 		width: 700rpx;
 		height: auto;
@@ -216,7 +248,8 @@
 		background-color: #9584ff;
 		color: white;
 	}
-	.EmailCodeBtn.active{
+
+	.EmailCodeBtn.active {
 		width: 400rpx;
 		border-radius: 20rpx;
 		background-color: #c0b7fa;

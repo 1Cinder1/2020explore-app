@@ -23,83 +23,6 @@
 		<view class="list width center">
 			<view class="item">
 				<view class="title">
-					Your name
-				</view>
-				<view class="data">
-					<u-input placeholder="Enter your name" shape="circle" border="surround" clearable
-						style="background-color: rgb(255, 255, 255);"></u-input>
-				</view>
-			</view>
-			<view class="item">
-				<view class="title">
-					Gender
-				</view>
-				<view class="pick">
-					<view class="pick-item gender active" @click="activePick('gender',0)">
-						Male
-					</view>
-					<view class="pick-item gender" @click="activePick('gender',1)">
-						Female
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<view class="title">
-					Age
-				</view>
-				<view class="data">
-					<u-input placeholder="Enter your Age" shape="circle" border="surround" clearable
-						style="background-color: rgb(255, 255, 255);"></u-input>
-				</view>
-			</view>
-			<view class="item">
-				<view class="title">
-					Hypertension
-				</view>
-				<view class="pick">
-					<view class="pick-item hypertension active" @click="activePick('hypertension',0)">
-						Yse
-					</view>
-					<view class="pick-item hypertension" @click="activePick('hypertension',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					ever_Married
-				</view>
-				<view class="pick">
-					<view class="pick-item marry active" @click="activePick('marry',0)">
-						Yse
-					</view>
-					<view class="pick-item marry" @click="activePick('marry',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Worktype
-				</view>
-				<view class="down-menu">
-					<text style="display: inline-block;margin-left: 5px;">{{workTypeValue}}</text>
-					<view class="icon" @click="changeShow(0)">
-						<u-icon name="arrow-down" color="#797979" size="24" top="7"></u-icon>
-					</view>
-					<view class="menu-list" v-if="showList[0].show">
-						<view class="menu-item workType" v-for="item in workType" :key="item.value"
-							@click="changeValue('workType',item.value)">
-							{{item.title}}
-						</view>
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
 					Average glucose level
 				</view>
 				<view class="data">
@@ -107,21 +30,8 @@
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
-			<view class="item">
-				<view class="title">
-					Residence type
-				</view>
-				<view class="pick">
-					<view class="pick-item residence active" @click="activePick('residence',0)">
-						urban
-					</view>
-					<view class="pick-item residence" @click="activePick('residence',1)">
-						rural
-					</view>
-				</view>
-			</view>
-
+			
+			
 			<view class="item">
 				<view class="title">
 					Height
@@ -131,55 +41,28 @@
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
+			
 			<view class="item">
 				<view class="title">
-					Wieght
+					Weight
 				</view>
 				<view class="data">
 					<u-input placeholder="Enter your Wieght" shape="circle" border="surround" clearable
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
+			
+			
 			<view class="item">
 				<view class="title">
-					Smoking
-				</view>
-				<view class="pick">
-					<view class="pick-item smoking active" @click="activePick('smoking',0)">
-						Yse
-					</view>
-					<view class="pick-item smoking" @click="activePick('smoking',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Alcohol Drinking
-				</view>
-				<view class="pick">
-					<view class="pick-item drink active" @click="activePick('drink',0)">
-						Yse
-					</view>
-					<view class="pick-item drink" @click="activePick('drink',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Physical Health(the ast 3 days)
+					Physical Health(the past 30 days)
 				</view>
 				<view class="data">
 					<u-input placeholder="The day you feel not good" shape="circle" border="surround" clearable
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
+			
 			<view class="item">
 				<view class="title">
 					Mental Health(the past 30 days)
@@ -189,7 +72,7 @@
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
+			
 			<view class="item">
 				<view class="title">
 					Diffwalking
@@ -203,7 +86,7 @@
 					</view>
 				</view>
 			</view>
-
+			
 			<view class="item">
 				<view class="title">
 					SleepTime
@@ -213,85 +96,7 @@
 						style="background-color: rgb(255, 255, 255);"></u-input>
 				</view>
 			</view>
-
-			<view class="item">
-				<view class="title">
-					SkinCancer
-				</view>
-				<view class="pick">
-					<view class="pick-item skinCancer active" @click="activePick('skinCancer',0)">
-						Yse
-					</view>
-					<view class="pick-item skinCancer" @click="activePick('skinCancer',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Kidney Disease
-				</view>
-				<view class="pick">
-					<view class="pick-item disease active" @click="activePick('disease',0)">
-						Yse
-					</view>
-					<view class="pick-item disease" @click="activePick('disease',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Asthma
-				</view>
-				<view class="pick">
-					<view class="pick-item asthma active" @click="activePick('asthma',0)">
-						Yse
-					</view>
-					<view class="pick-item asthma" @click="activePick('asthma',1)">
-						No
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					Have you ever had diabetes
-				</view>
-				<view class="down-menu">
-					<text style="display: inline-block;margin-left: 5px;">{{diabetesValue}}</text>
-					<view class="icon" @click="changeShow(1)">
-						<u-icon name="arrow-down" color="#797979" size="24" top="7"></u-icon>
-					</view>
-					<view class="menu-list" v-if="showList[1].show">
-						<view class="menu-item diabetes" v-for="item in diabetes" :key="item.value"
-							@click="changeValue('diabetes',item.value)">
-							{{item.title}}
-						</view>
-					</view>
-				</view>
-			</view>
-
-			<view class="item">
-				<view class="title">
-					How can you define your general health?
-				</view>
-				<view class="down-menu">
-					<text style="display: inline-block;margin-left: 5px;">{{generalValue}}</text>
-					<view class="icon" @click="changeShow(2)">
-						<u-icon name="arrow-down" color="#797979" size="24" top="7"></u-icon>
-					</view>
-					<view class="menu-list" v-if="showList[2].show">
-						<view class="menu-item general" v-for="item in general" :key="item.value"
-							@click="changeValue('general',item.value)">
-							{{item.title}}
-						</view>
-					</view>
-				</view>
-			</view>
-
+		
 			<view class="item">
 				<view class="title">
 					Physical Activities (the past 30 days)
