@@ -10,6 +10,15 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/start/start",
+		    "style" :                                                                                    
+		    {
+		        "navigationStyle": "custom",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom", // 隐藏系统导航栏
@@ -47,19 +56,32 @@
             
         }
         ,{
-            "path" : "pages/start/start",
+            "path" : "pages/SignUp/SignUp",
             "style" :                                                                                    
             {
                 "navigationStyle": "custom",
                 "enablePullDownRefresh": false
             }
             
-        }
+        },{
+			"path": "pages/history/history",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		}
         ,{
-            "path" : "pages/SignUp/SignUp",
+            "path" : "pages/like/like",
             "style" :                                                                                    
             {
-                "navigationStyle": "custom",
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

@@ -13,13 +13,17 @@
 				</navigator>
 			</view>
 			<view class="item">
-				<u-icon name="clock" labelColor="#ffffff" color="#ffffff" size="20" label="History"></u-icon>
+				<navigator url="../history/history" open-type="redirect">
+					<u-icon name="clock" labelColor="#ffffff" color="#ffffff" size="20" label="History"></u-icon>
+				</navigator>
 			</view>
 			<view class="item">
 				<u-icon name="heart" labelColor="#ffffff" color="#ffffff" size="20" label="Like"></u-icon>
 			</view>
 			<view class="item">
+				<navigator url="../settings/settings">
 				<u-icon name="setting" labelColor="#ffffff" color="#ffffff" size="20" label="Setting"></u-icon>
+				</navigator>
 			</view>
 			<view class="item">
 				<u-icon name="question-circle" labelColor="#ffffff" color="#ffffff" size="20"

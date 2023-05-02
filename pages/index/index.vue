@@ -28,7 +28,7 @@
 
 			<view class="search">
 				<u-search placeholder="Search" :showAction="false" inputAlign="left" height="50" v-model="searchValue"
-					@search="search"></u-search>
+					@search="search" @focus="showSearch"></u-search>
 			</view>
 
 			<view class="kind width center">
@@ -180,15 +180,18 @@
 			</view>
 
 		</view>
+		<seatch v-if="isShowSearch"></seatch>
 	</view>
 
 </template>
 
 <script>
 	import navAside from '../../components/navAside'
+	import seatch from './search/search.vue'
 	export default {
 		components: {
-			navAside
+			navAside,
+			seatch
 		},
 		data() {
 			return {
@@ -213,6 +216,7 @@
 					'name': 'Medicine',
 				}],
 				selected: 0,
+				isShowSearch:false
 			}
 		},
 		created() {
@@ -263,6 +267,9 @@
 			},
 			search() {
 				console.log(1)
+			},
+			showSearch(e){
+				this.isShowSearch=true
 			},
 			changeActive(id) {
 				let arr = document.querySelectorAll('.kind-item')

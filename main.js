@@ -2,7 +2,12 @@ import App from './App'
 
 // #ifndef VUE3
 import Vue from 'vue'
+import * as requests from './api/request.js'
+import store from './store/index.js'
+
+Vue.prototype.$store = store
 Vue.config.productionTip = false
+Vue.prototype.$requests=requests
 App.mpType = 'app'
 
 // 引入uview组件库
@@ -38,6 +43,7 @@ try {
 } catch (error) {}
 
 const app = new Vue({
+	store,
 	...App
 })
 app.$mount()
