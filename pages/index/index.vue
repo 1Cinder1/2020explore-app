@@ -4,7 +4,7 @@
 		<view class="close-btn" v-show="navShow" @click="closeNav">
 			<u-icon name="close" color="#fff" size="20"></u-icon>
 		</view>
-		<view class="box" id="box">
+		<view class="box" ref="box" id="box" :style="isStyle ? style[0]:style[1]">
 			<!-- 自定义导航栏 -->
 			<view class="navBarBox">
 				<!-- 状态栏占位 -->
@@ -32,7 +32,7 @@
 			</view>
 
 			<view class="kind width center">
-				<view class="kind-item" v-for="item in kindList" :key="item.id" @click="changeActive(item.id)">
+				<view class="kind-item" :class="{active:item.active}" ref="kindItem" v-for="item in kindList" :key="item.id" @click="changeActive(item,item.id)">
 					{{item.name}}
 				</view>
 			</view>
@@ -156,18 +156,39 @@
 				kindList: [{
 					'id': 0,
 					'name': 'Daily',
+					"active":true
 				}, {
 					'id': 1,
 					'name': 'Stroke',
+					"active":false
 				}, {
 					'id': 2,
 					'name': 'Heart Disease',
+					"active":false
 				}, {
 					'id': 3,
 					'name': 'Medicine',
+					"active":false
 				}],
 				selected: 0,
-				isShowSearch:false
+				isShowSearch:false,
+				style:[{
+					transform :`scale(0.7,0.7)`,
+					backgroundColor : '#fff',
+					position :'absolute',
+					zIndex : 2,
+					borderRadius : '20px',
+					pointerEvents : 'none',
+					right:"0rpx"
+				},{
+					backgroundColor : '#ecebed',
+					position : 'initial',
+					right : 0,
+					borderRadius :0,
+					pointerEvents : 'initial',
+				}
+				],
+				isStyle:false
 			}
 		},
 		created() {
@@ -175,47 +196,34 @@
 			this.statusBarHeight = uni.getSystemInfoSync()['statusBarHeight'];
 		},
 		mounted() {
-			var item = document.querySelector('.kind-item');
-			item.classList.add('active')
 			this.getArticleList()
 		},
 		methods: {
 			showNav() {
 				this.navShow = true
 				var right = 0
-				var box = document.getElementById("box");
-				box.style.transform = 'scale(0.7,0.7)'
-				box.style.backgroundColor = '#fff'
-				box.style.position = 'absolute'
-				box.style.zIndex = 2
-				box.style.borderRadius = '20px'
-				box.style.pointerEvents = 'none'
+				this.isStyle=true
 				var timer = setInterval(() => {
-					if (right <= -200) {
+					if (right <= -500) {
 						clearInterval(timer)
 					} else {
 						right -= 20
-						box.style.right = right + 'px'
+						this.style[0].right = right + 'rpx'
 					}
 				}, 10)
 			},
 			closeNav() {
 				this.navShow = false
 				var scale = 0.7
-				var box = document.getElementById("box");
-				box.style.backgroundColor = '#ecebed'
-				box.style.position = 'initial'
-				box.style.right = '0'
-				box.style.borderRadius = '0'
-				box.style.pointerEvents = 'initial'
+				this.isStyle=false
 				var timer = setInterval(() => {
 					if (scale >= 0.9) {
 						clearInterval(timer)
 					} else {
 						scale += 0.1
-						box.style.transform = `scale(${scale},${scale})`
+						this.style[1].transform = `scale(${scale},${scale})`
 					}
-				}, 10)
+				}, 50)
 			},
 			search() {
 				console.log(1)
@@ -223,12 +231,11 @@
 			showSearch(e){
 				this.isShowSearch=true
 			},
-			changeActive(id) {
-				let arr = document.querySelectorAll('.kind-item')
-				for (var i = 0; i < arr.length; i++) {
-					arr[i].classList.remove('active')
-				}
-				arr[id].classList.add('active')
+			changeActive(item,id) {
+				this.kindList.forEach((item)=>{
+					item.active=false
+				})
+				item.active=true
 				this.selected = id
 			},
 			async getArticleList(){

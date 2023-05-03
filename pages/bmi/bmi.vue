@@ -63,7 +63,7 @@
 				</view>
 				<view style="border: 1px solid black;width:100%;
     padding: 0 15.2px;margin-left: -16px;"></view>
-				<view class="past30Daycontext">
+				<view class="past30Daycontext" ref="past30Daycontext" :style="{webkitLineClamp:!item.isShow ? 10:''}">
 					{{item.content}}
 				</view>
 				<view v-if="item.isShow" class="showMore" @click="showContent(item,index)">Show more</view>
@@ -182,8 +182,8 @@
 			showContent(item,index) {
 				console.log(event)
 				item.isShow = false
-				let past30Daycontext = document.querySelectorAll('.past30Daycontext')
-				past30Daycontext[index].style.webkitLineClamp = "10"
+				// let past30Daycontext = this.$refs.past30Daycontext.$el
+				// past30Daycontext[index].style.webkitLineClamp = "10"
 			}
 		}
 	}

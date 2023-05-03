@@ -4,7 +4,7 @@
 		<view class="close-btn" v-show="navShow" @click="closeNav">
 			<u-icon name="close" color="#fff" size="20"></u-icon>
 		</view>
-		<view class="box" id="box">
+		<view class="box" ref="box" id="box" :style="isStyle ? style[0]:style[1]">
 			<!-- 自定义导航栏 -->
 			<view class="navBarBox">
 				<!-- 状态栏占位 -->
@@ -78,7 +78,7 @@
 					<navigator url="../bmi/bmi" hover-class="none">
 						<view class="top">
 							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
+								<img src="../../static/icon/Medico_Bold_Body.png" alt="">
 							</view>
 							<view class="text">
 								<view class="">
@@ -105,11 +105,11 @@
 					<navigator url="" hover-class="none">
 						<view class="top">
 							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
+								<img src="../../static/icon/24-hours-line.png" alt="">
 							</view>
 							<view class="text">
 								<view class="">
-									Glucose
+									SleepTime
 								</view>
 								<view class="">
 									23/4/3
@@ -120,41 +120,15 @@
 							<img src="../../static/icon/line.png" alt="">
 						</view>
 						<view class="data">
-							4.1mmol/L
+							9.7h
 						</view>
 						<view class="bottom">
 							<img src="../../static/icon/up.png" alt="">
-							+9.0%
+							+21.3%
 						</view>
 					</navigator>
 				</view>
-				<view class="card">
-					<navigator url="" hover-class="none">
-						<view class="top">
-							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
-							</view>
-							<view class="text">
-								<view class="">
-									Glucose
-								</view>
-								<view class="">
-									23/4/3
-								</view>
-							</view>
-						</view>
-						<view class="line">
-							<img src="../../static/icon/line.png" alt="">
-						</view>
-						<view class="data">
-							4.1mmol/L
-						</view>
-						<view class="bottom">
-							<img src="../../static/icon/up.png" alt="">
-							+9.0%
-						</view>
-					</navigator>
-				</view>
+
 			</scroll-view>
 		</view>
 	</view>
@@ -206,14 +180,31 @@
 					series: [{
 						type: 'candlestick',
 						data: [
-							[20, 34, 10, 38],
+							[15, 30, 9, 44],
 							[40, 35, 30, 50],
-							[31, 38, 33, 44],
+							[31, 20, 33, 44],
 							[38, 15, 5, 42],
 							[31, 38, 33, 44]
 						]
 					}]
+				},
+				style:[{
+					transform :`scale(0.7,0.7)`,
+					backgroundColor : '#fff',
+					position :'absolute',
+					zIndex : 2,
+					borderRadius : '20px',
+					pointerEvents : 'none',
+					right:"0rpx"
+				},{
+					backgroundColor : '#ecebed',
+					position : 'initial',
+					right : 0,
+					borderRadius :0,
+					pointerEvents : 'initial',
 				}
+				],
+				isStyle:false
 			}
 		},
 		created() {
@@ -239,46 +230,35 @@
 			showNav() {
 				this.navShow = true
 				var right = 0
-				var box = document.getElementById("box");
-				box.style.transform = 'scale(0.7,0.7)'
-				box.style.backgroundColor = '#fff'
-				box.style.position = 'absolute'
-				box.style.zIndex = 2
-				box.style.borderRadius = '20px'
-				box.style.pointerEvents = 'none'
+				this.isStyle=true
 				var timer = setInterval(() => {
 					if (right <= -500) {
 						clearInterval(timer)
 					} else {
 						right -= 20
-						box.style.right = right + 'px'
+						this.style[0].right = right + 'rpx'
 					}
 				}, 10)
 			},
 			closeNav() {
 				this.navShow = false
 				var scale = 0.7
-				var box = document.getElementById("box");
-				box.style.backgroundColor = '#ecebed'
-				box.style.position = 'initial'
-				box.style.right = '0'
-				box.style.borderRadius = '0'
-				box.style.pointerEvents = 'initial'
+				this.isStyle=false
 				var timer = setInterval(() => {
 					if (scale >= 0.9) {
 						clearInterval(timer)
 					} else {
 						scale += 0.1
-						box.style.transform = `scale(${scale},${scale})`
+						this.style[1].transform = `scale(${scale},${scale})`
 					}
-				}, 10)
+				}, 50)
 			},
 			async getStrokePredictHistory(){
 				let result = await this.$requests.getStrokePredictHistory()
 				if(result.code==5000){
 					this.strokePercent=0
 				}else{
-					this.strokePercent=res.data
+					this.strokePercent=result.data
 				}
 			},
 			async getHeartPredictHistory(){
@@ -286,7 +266,7 @@
 				if(result.code==5000){
 					this.heartPercent=0
 				}else{
-					this.heartPercent=res.data
+					this.heartPercent=result.data
 				}
 				
 			},

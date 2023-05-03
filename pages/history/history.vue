@@ -4,7 +4,7 @@
 		<view class="close-btn" v-show="navShow" @click="closeNav">
 			<u-icon name="close" color="#fff" size="20"></u-icon>
 		</view>
-		<view class="box" id="box">
+		<view class="box" ref="box" id="box">
 			<!-- 自定义导航栏 -->
 			<view class="navBarBox">
 				<!-- 状态栏占位 -->
@@ -55,7 +55,7 @@
 			showNav() {
 				this.navShow = true
 				var right = 0
-				var box = document.getElementById("box");
+				var box = this.$refs.box.$el
 				box.style.transform = 'scale(0.7,0.7)'
 				box.style.backgroundColor = '#fff'
 				box.style.position = 'absolute'
@@ -74,7 +74,7 @@
 			closeNav() {
 				this.navShow = false
 				var scale = 0.7
-				var box = document.getElementById("box");
+				var box = this.$refs.box.$el
 				box.style.backgroundColor = '#ecebed'
 				box.style.position = 'initial'
 				box.style.right = '0'

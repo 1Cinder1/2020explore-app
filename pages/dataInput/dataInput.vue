@@ -78,11 +78,8 @@
 					Diffwalking
 				</view>
 				<view class="pick">
-					<view class="pick-item diffwalking active" @click="activePick('diffwalking',0)">
-						Yse
-					</view>
-					<view class="pick-item diffwalking" @click="activePick('diffwalking',1)">
-						No
+					<view class="pick-item diffwalking" :class="{active:index==0}" ref="diffwalking" v-for="(item,index) in 2" :key="index" @click="activePick('diffwalking',index)">
+						{{index==0 ? "Yes":"No"}}
 					</view>
 				</view>
 			</view>
@@ -102,11 +99,8 @@
 					Physical Activities (the past 30 days)
 				</view>
 				<view class="pick">
-					<view class="pick-item physical active" @click="activePick('physical',0)">
-						Yse
-					</view>
-					<view class="pick-item physical" @click="activePick('physical',1)">
-						No
+					<view class="pick-item physical" :class="{active:index==0}" ref="physical" v-for="(item,index) in 2" :key="index" @click="activePick('physical',index)">
+						{{index==0 ? "Yes":"No"}}
 					</view>
 				</view>
 			</view>
@@ -190,7 +184,7 @@
 			},
 			changeValue(name, value) {
 				console.log(name, value)
-				var arr = document.querySelectorAll('.' + name);
+				var arr = this.$refs[name]
 				for (var i = 0; i < arr.length; i++) {
 					arr[i].classList.remove('active')
 				}
@@ -211,12 +205,12 @@
 
 			},
 			activePick(name, index) {
-				console.log(name)
-				var arr = document.querySelectorAll('.' + name)
+				console.log(this.$refs[name])
+				var arr = this.$refs[name]
 				for (var i = 0; i < arr.length; i++) {
-					arr[i].classList.remove('active')
+					arr[i].$el.classList.remove('active')
 				}
-				arr[index].classList.add('active')
+				arr[index].$el.classList.add('active')
 			},
 			submit() {
 				this.$refs.uToast.show({

@@ -20,11 +20,14 @@
 			}
 		},
 		onLoad() {
-			if(localStorage.getItem('uaa_token')){
-				uni.navigateTo({
-					url:'/pages/home/home'
-				})
-			}
+			uni.getStorage({
+				key:'uaa_token',
+				success: () => {
+					uni.navigateTo({
+						url:'/pages/home/home'
+					})
+				}
+			})
 		},
 		methods: {
 			toSignUp(){

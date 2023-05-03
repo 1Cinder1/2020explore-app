@@ -1,7 +1,9 @@
 import {getUserInfo} from '@/api/request.js'
 const state={
 	userInfo:{},
-	userToken:localStorage.getItem('uaa_token')
+	userToken:uni.getStorage({
+		key:'uaa_token'
+	})
 }
 const mutations={
 	GETUSERINFO(state,userInfo){
@@ -18,7 +20,10 @@ const actions={
 		console.log(result)
 		if(result.code==1000){
 			commit('GETUSERINFO',result.data)
-			localStorage.setItem('uaa_token',`bearer ${result.data.access_token}`)
+			uni.setStorage({
+				key:'uaa_token',
+				data:`bearer ${result.data.access_token}`
+			})
 			return 'ok'
 		}else{
             return Promise.reject(new Error('faile'))
@@ -29,7 +34,10 @@ const actions={
 		console.log(result)
 		if(result.code==1000){
 			commit('GETUSERTOKEN',`bearer ${result.data.access_token}`)
-			localStorage.setItem('uaa_token',`bearer ${result.data.access_token}`)
+			uni.setStorage({
+				key:'uaa_token',
+				data:`bearer ${result.data.access_token}`
+			})
 			return 'ok'
 		}else{
 	        return Promise.reject(new Error('faile'))
