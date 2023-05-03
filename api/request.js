@@ -3,7 +3,7 @@ import {authRequest,basicRequest} from "@/api/index.js"
 export const getArticleList=()=>{
 	return authRequest({url:'/article/list',method:'get'})
 }
-//获取用户信息
+//获取用户信息,登入
 export const getUserInfo=(params)=>{
 	return basicRequest({url:'/login',method:'post',data:params})
 }
@@ -23,8 +23,6 @@ export const getArticleCollect=(articleId)=>{
 export const getArticleCollectList=()=>{
 	return authRequest({url:'/article/collect-list',method:'get'})
 }
-
-
 // 文章点赞接口
 export const getArticleLike=(articleId)=>{
 	return authRequest({url:`/article/like?articleId=${articleId}`,method:'get'})
@@ -57,7 +55,6 @@ export const getHeartPredictHistory=()=>{
 export const getStrokePredictHistory=()=>{
 	return authRequest({url:'/predict/stroke-predict-history',method:'get'})
 }
-
 // 重置密码发送验证码
 export const reviseCaptcha=()=>{
 	return authRequest({url:'/revise-Captcha',method:'get'})
@@ -66,11 +63,9 @@ export const reviseCaptcha=()=>{
 export const revisePassword=(captcha,newPassword)=>{
 	return authRequest({url:`/revise-password/${captcha}/${newPassword}`,method:'post'})
 }
-
-
 // 获取用户基本健康信息和用户信息
 export const getUserBasicInfo=()=>{
-	return authRequest({url:`/user/info`,method:'get'})
+	return authRequest({url:'/user/info',method:'get'})
 }
 // 修改用户的健康信息
 export const editHealthInfo=(HealthInfoVo)=>{

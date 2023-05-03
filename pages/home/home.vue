@@ -17,16 +17,31 @@
 					</navigator>
 				</view>
 			</view>
+			<view style="height: 345px;">
 			<view class="title width center">
 				<view class="en">
 					Current stroke probability
 				</view>
 				<view class="num">
-					{{percent}}%
+					{{strokePercent}}%
 				</view>
 			</view>
 			<view class="pic">
-				<l-echart ref="chart" @finished="init"></l-echart>
+				<l-echart ref="chart1" @finished="init1"></l-echart>
+			</view>
+			</view>
+			<view>
+			<view class="title width center">
+				<view class="en">
+					Current heart probability
+				</view>
+				<view class="num">
+					{{heartPercent}}%
+				</view>
+			</view>
+			<view class="pic">
+				<l-echart ref="chart2" @finished="init2"></l-echart>
+			</view>
 			</view>
 			<view class="index width center">
 				Health Index
@@ -51,7 +66,7 @@
 							<img src="../../static/icon/line.png" alt="">
 						</view>
 						<view class="data">
-							4.1mmol/L
+							{{avgGlucoseLevelAverage.length==0 ? "0":avgGlucoseLevelAverage}}mmol/L
 						</view>
 						<view class="bottom">
 							<img src="../../static/icon/up.png" alt="">
@@ -60,7 +75,7 @@
 					</navigator>
 				</view>
 				<view class="card">
-					<navigator url="" hover-class="none">
+					<navigator url="../bmi/bmi" hover-class="none">
 						<view class="top">
 							<view class="icon">
 								<img src="../../static/icon/heart.png" alt="">
@@ -147,6 +162,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import navAside from '../../components/navAside'
 	import * as echarts from 'echarts'
 	export default {
@@ -160,8 +176,27 @@
 				statusBarHeight: 0,
 				// 导航栏高度
 				navBarHeight: 82 + 11,
-				percent: 71.094,
-				option: {
+				strokePercent: 71.094,
+				heartPercent: 71.094,
+				strokeOption: {
+					xAxis: {
+						data: ['4-20', '4-19', '4-18', '4-17', '4-16']
+					},
+					yAxis: {
+						position: 'right'
+					},
+					series: [{
+						type: 'candlestick',
+						data: [
+							[20, 34, 10, 38],
+							[40, 35, 30, 50],
+							[31, 38, 33, 44],
+							[38, 15, 5, 42],
+							[31, 38, 33, 44]
+						]
+					}]
+				},
+				heartOption: {
 					xAxis: {
 						data: ['4-20', '4-19', '4-18', '4-17', '4-16']
 					},
@@ -185,11 +220,21 @@
 			//获取手机状态栏高度
 			this.statusBarHeight = uni.getSystemInfoSync()['statusBarHeight'];
 		},
+		onLoad() {
+			this.getStrokePredictHistory()
+			this.getHeartPredictHistory()
+			this.getAveGlucoseLevelAge()
+		},
 		methods: {
-			async init() {
+			async init1() {
 				// chart 图表实例不能存在data里
-				const chart = await this.$refs.chart.init(echarts);
-				chart.setOption(this.option)
+				const chart = await this.$refs.chart1.init(echarts);
+				chart.setOption(this.strokeOption)
+			},
+			async init2() {
+				// chart 图表实例不能存在data里
+				const chart = await this.$refs.chart2.init(echarts);
+				chart.setOption(this.heartOption)
 			},
 			showNav() {
 				this.navShow = true
@@ -227,7 +272,32 @@
 						box.style.transform = `scale(${scale},${scale})`
 					}
 				}, 10)
+			},
+			async getStrokePredictHistory(){
+				let result = await this.$requests.getStrokePredictHistory()
+				if(result.code==5000){
+					this.strokePercent=0
+				}else{
+					this.strokePercent=res.data
+				}
+			},
+			async getHeartPredictHistory(){
+				let result = await this.$requests.getHeartPredictHistory()
+				if(result.code==5000){
+					this.heartPercent=0
+				}else{
+					this.heartPercent=res.data
+				}
+				
+			},
+			async getAveGlucoseLevelAge(){
+				await this.$store.dispatch('getHeartHistory')
 			}
+		},
+		computed:{
+			...mapState({
+				avgGlucoseLevelAverage:state=>state.glucose.avgGlucoseLevelAverage
+			})
 		}
 	}
 </script>

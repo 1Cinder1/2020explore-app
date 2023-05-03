@@ -22,7 +22,7 @@
 					AVG_glucose_level
 				</view>
 				<view class="context">
-					<view class="data">4.1mmol/L</view>
+					<view class="data">{{avgGlucoseLevelAverage.length==0 ? "0":avgGlucoseLevelAverage}}mmol/L</view>
 					<view class="percent">
 						<img src="../../static/icon/up.png" alt="">
 						0.1(5.58%)
@@ -111,6 +111,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import * as echarts from 'echarts'
 	export default {
 		data() {
@@ -163,8 +164,11 @@
 						content:'In order to help users better manage theircardiovascular and cerebrovascular health,Mailuoqingquanalso provides practical.',
 						isShow:true
 					}
-				],
+				]
 			}
+		},
+		onLoad() {
+			this.getAveGlucoseLevelAge()
 		},
 		created() {
 			//获取手机状态栏高度
@@ -184,7 +188,16 @@
 				item.isShow = false
 				let past30Daycontext = document.querySelectorAll('.past30Daycontext')
 				past30Daycontext[index].style.webkitLineClamp = "10"
+			},
+			//获取avgGlucoseLevelAverage的值
+			async getAveGlucoseLevelAge(){
+				await this.$store.dispatch('getHeartHistory')
 			}
+		},
+		computed:{
+			...mapState({
+				avgGlucoseLevelAverage:state=>state.glucose.avgGlucoseLevelAverage
+			})
 		}
 	}
 </script>

@@ -24,7 +24,7 @@
 				<view class="context">
 					<view class="data">20.4</view>
 					<view class="percent">
-						<img src="../../static/icon/down.png" alt="">
+						<img width="16px" height="16px" src="../../static/icon/down.png" alt="">
 						0.5(18.7%)
 					</view>
 				</view>

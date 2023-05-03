@@ -19,6 +19,13 @@
 				
 			}
 		},
+		onLoad() {
+			if(localStorage.getItem('uaa_token')){
+				uni.navigateTo({
+					url:'/pages/home/home'
+				})
+			}
+		},
 		methods: {
 			toSignUp(){
 				uni.navigateTo({
