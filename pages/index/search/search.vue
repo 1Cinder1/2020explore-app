@@ -11,6 +11,7 @@
 			<view class="left">
 				<img src="../../../static/card/stroke.png" alt="">
 			</view>
+			
 			<view class="right">
 				<view class="content">
 					How I Hacked Into Apple,

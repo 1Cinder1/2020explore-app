@@ -101,7 +101,23 @@
             	"enablePullDownRefresh": false
             }
             
-        }
+        },
+		{
+		    "path" : "pages/sleeptime/sleeptime",
+		    "style": {
+		    	"navigationStyle": "custom", // 隐藏系统导航栏
+		    	"enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/dailyreport/dailyreport",
+		    "style": {
+		    	"navigationStyle": "custom", // 隐藏系统导航栏
+		    	"enablePullDownRefresh": false
+		    }
+		    
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -72,7 +72,7 @@
 		</view>
 		<view class="Advise">
 			<view class="Advisetitle center">Health Advise</view>
-			<view class="card center" v-for="i in 3" :key="i">
+			<view class="card center">
 				<view class="notice">
 					KEY ADVISE
 				</view>
@@ -86,7 +86,38 @@
 				</view>
 				<view class="context">
 					Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
-
+				</view>
+			</view>
+			<view class="card center">
+				<view class="notice">
+					KEY ADVISE
+				</view>
+				<view class="title">
+					<view>
+						Diet control
+					</view>
+					<view class="gpt">
+						Powered by GPT
+					</view>
+				</view>
+				<view class="context">
+					Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
+				</view>
+			</view>
+			<view class="card center">
+				<view class="notice">
+					KEY ADVISE
+				</view>
+				<view class="title">
+					<view>
+						Sleep Longer
+					</view>
+					<view>
+						2.5H
+					</view>
+				</view>
+				<view class="context">
+					Your chances of having a stroke are reduced! But your blood sugar is elevated and you should be...
 				</view>
 			</view>
 		</view>
@@ -403,5 +434,11 @@
 		width: 100%;
 		height: 100%;
 		border-radius:20rpx;
+	}
+	.gpt{
+		background: linear-gradient(90.00deg, #FBCF83 -1.79%, #FFB22E 100%); 
+		-webkit-background-clip: text; 
+		-webkit-text-fill-color: transparent;
+		/* background: linear-gradient(90.00deg, rgba(0, 245, 242, 1.00) -1.79%, rgba(242, 229, 251, 1.00) 100%); */
 	}
 </style>

@@ -78,7 +78,7 @@
 					<navigator url="../bmi/bmi" hover-class="none">
 						<view class="top">
 							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
+								<img src="../../static/icon/Medico_Bold_Body.png" alt="">
 							</view>
 							<view class="text">
 								<view class="">
@@ -102,14 +102,14 @@
 					</navigator>
 				</view>
 				<view class="card">
-					<navigator url="" hover-class="none">
+					<navigator url="../sleeptime/sleeptime" hover-class="none">
 						<view class="top">
 							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
+								<img src="../../static/icon/24-hours-line.png" alt="">
 							</view>
 							<view class="text">
 								<view class="">
-									Glucose
+									SleepTime
 								</view>
 								<view class="">
 									23/4/3
@@ -120,41 +120,15 @@
 							<img src="../../static/icon/line.png" alt="">
 						</view>
 						<view class="data">
-							4.1mmol/L
+							9.7h
 						</view>
 						<view class="bottom">
 							<img src="../../static/icon/up.png" alt="">
-							+9.0%
+							+21.3%
 						</view>
 					</navigator>
 				</view>
-				<view class="card">
-					<navigator url="" hover-class="none">
-						<view class="top">
-							<view class="icon">
-								<img src="../../static/icon/heart.png" alt="">
-							</view>
-							<view class="text">
-								<view class="">
-									Glucose
-								</view>
-								<view class="">
-									23/4/3
-								</view>
-							</view>
-						</view>
-						<view class="line">
-							<img src="../../static/icon/line.png" alt="">
-						</view>
-						<view class="data">
-							4.1mmol/L
-						</view>
-						<view class="bottom">
-							<img src="../../static/icon/up.png" alt="">
-							+9.0%
-						</view>
-					</navigator>
-				</view>
+
 			</scroll-view>
 		</view>
 	</view>
@@ -206,9 +180,9 @@
 					series: [{
 						type: 'candlestick',
 						data: [
-							[20, 34, 10, 38],
+							[15, 30, 9, 44],
 							[40, 35, 30, 50],
-							[31, 38, 33, 44],
+							[31, 20, 33, 44],
 							[38, 15, 5, 42],
 							[31, 38, 33, 44]
 						]

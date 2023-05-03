@@ -39,8 +39,8 @@
 
 			<view class="daily" v-show="selected == 0">
 				<scroll-view scroll-x="true" scroll-with-animation class="scroll-tab width center">
-					<view class="card" @>
-						<navigator url="" hover-class="none">
+					<view class="card">
+						<navigator url="../dailyreport/dailyreport" hover-class="none">
 							<view class="pic">
 								<img src="../../static/card/card.png" alt="">
 							</view>
@@ -92,7 +92,57 @@
 
 			<view class="daily" v-show="selected == 1">
 				<view class="list width center">
-					<view class="list-item" @click="toArticle(item.articleId)" v-for="(item,index) in ArticleList" :key="index">
+					<view class="list-item" @click="gotoArticle(1)">
+						<view class="left">
+							<img src="../../static/card/stroke.png" alt="">
+						</view>
+						<view class="right">
+							<view class="content">
+								How I Hacked Into Apple,
+								Microsoft and Dozens
+							</view>
+							<view class="data">
+								<view class="">
+									<img src="../../static/icon/eye.png" alt=""> 356
+								</view>
+								<view class="">
+									<img src="../../static/icon/collect.png" alt=""> 341
+								</view>
+								<view class="">
+									<img src="../../static/icon/like.png" alt=""> 315
+								</view>
+							</view>
+							<view class="time">
+								Sep, 11 2020
+							</view>
+						</view>
+					</view>
+					<view class="list-item" @click="gotoArticle(2)">
+						<view class="left">
+							<img src="../../static/card/stroke.png" alt="">
+						</view>
+						<view class="right">
+							<view class="content">
+								How I Hacked Into Apple,
+								Microsoft and Dozens
+							</view>
+							<view class="data">
+								<view class="">
+									<img src="../../static/icon/eye.png" alt=""> 356
+								</view>
+								<view class="">
+									<img src="../../static/icon/eye.png" alt=""> 341
+								</view>
+								<view class="">
+									<img src="../../static/icon/like.png" alt=""> 315
+								</view>
+							</view>
+							<view class="time">
+								Sep, 11 2020
+							</view>
+						</view>
+					</view>
+					<view class="list-item" @click="gotoArticle(3)">
 						<view class="left">
 							<img src="../../static/card/stroke.png" alt="">
 						</view>
@@ -136,7 +186,6 @@
 </template>
 
 <script>
-	import {mapState} from 'vuex'
 	import navAside from '../../components/navAside'
 	import seatch from './search/search.vue'
 	export default {
@@ -177,9 +226,13 @@
 		mounted() {
 			var item = document.querySelector('.kind-item');
 			item.classList.add('active')
-			this.getArticleList()
 		},
 		methods: {
+			gotoArticle(articleId){
+				uni.navigateTo({
+					url:"/pages/article/article?articleId="+articleId
+				})
+			},
 			showNav() {
 				this.navShow = true
 				var right = 0
@@ -230,30 +283,7 @@
 				}
 				arr[id].classList.add('active')
 				this.selected = id
-			},
-			async getArticleList(){
-				try{
-					await this.$store.dispatch('getArticleList')
-				}catch(e){
-					//TODO handle the exception
-					alert(e.message)
-				}
-			},
-			async toArticle(id){
-				console.log(id)
-				let result=await this.$requests.getArticleAdd(id*1)
-				if(result.code==1000){
-					uni.navigateTo({
-						url:'/pages/article/article'
-					})
-				}
 			}
-		},
-		computed:{
-			...mapState({
-				ArticleList:state=>state.articleList.articleList
-			})
-			
 		}
 	}
 </script>
