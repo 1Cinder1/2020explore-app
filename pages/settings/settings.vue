@@ -13,15 +13,14 @@
 				<view class="usernameEamil">
 					<view v-if="!setUsernameEamil">{{usernameEamil.name}}</view>
 					<input name="name" v-else style="width: 300rpx;" type="text" :placeholder="usernameEamil.name"
-						@confirm="setUsernameEamil=!setUsernameEamil" @blur="SetUsernameEamilCpt('name')"
-						@input="infoInput">
+						@confirm="setUsernameEamil=!setUsernameEamil" @blur="SetUsernameEamilCpt('name')">
 					<view v-if="!setUsernameEamil">{{usernameEamil.email}}</view>
 					<input name="email" v-else style="width: 300rpx;" type="text" :placeholder="usernameEamil.email"
 						@confirm="setUsernameEamil=!setUsernameEamil" @blur="SetUsernameEamilCpt('email')">
 
 				</view>
 				<view @click="setUsernameEamil=!setUsernameEamil">
-					<img src="../../static/user/修改.png" alt="">
+					<img src="../../static/user/edit.png" alt="">
 				</view>
 			</view>
 			<view class="userAccount">
@@ -35,9 +34,9 @@
 						</view>
 					</view>
 					<view class="userAccountSet" @click="changeUserAccount(userAccountItem)">
-						<img v-if="!userAccountItem.active" style="width: 50rpx;" src="../../static/user/方向-向右.png"
+						<img v-if="!userAccountItem.active" style="width: 50rpx;" src="../../static/user/rightarrow.png"
 							alt="">
-						<img v-else style="width: 50rpx;" src="../../static/user/方向-向下.png" alt="">
+						<img v-else style="width: 50rpx;" src="../../static/user/downarrow.png" alt="">
 					</view>
 				</view>
 			</view>
@@ -48,13 +47,13 @@
 					</view>
 					<view style="display: flex;align-items: center;width: 300rpx;justify-content: flex-end;">
 						<view class="userAllInfoContent">
-							{{key=="phone"||key=="email"||key=="age" ? userAllInfoItem:SetContent[key][key][userAllInfoItem]}}
+							{{SetContent[key].isSet ? SetContent[key][key][userAllInfoItem]:userAllInfoItem}}
 						</view>
 						<view class="userAllInfoSet" v-if="SetContent[key].isSet"
 							@click="changeUserAllInfo(key,SetContent[key][key])">
-							<img v-if="!SetContent[key].active" style="width: 50rpx;" src="../../static/user/方向-向右.png"
+							<img v-if="!SetContent[key].active" style="width: 50rpx;" src="../../static/user/rightarrow.png"
 								alt="">
-							<img v-else style="width: 50rpx;" src="../../static/user/方向-向下.png" alt="">
+							<img v-else style="width: 50rpx;" src="../../static/user/downarrow.png" alt="">
 						</view>
 					</view>
 				</view>
@@ -69,7 +68,7 @@
 					label-width="350rpx" label-position="top">
 					<uni-forms-item class="formItem" name="captcha" label="Email verification code">
 						<view class="formIpt" style="display: flex;">
-							<input style="width: 200rpx;" type="number" v-model="FormData.EmailCode"
+							<input style="width: 200rpx;" type="number" v-model="FormData.captcha"
 								placeholder="Please enter emailCode">
 							<button class="EmailCodeBtn" :class="{active:send}" :disabled="send"
 								@click="getEmailCode">{{EmailCodeIptContent}}</button>
@@ -77,7 +76,7 @@
 					</uni-forms-item>
 					<uni-forms-item class="formItem" name="newPassword" label="Password">
 						<view class="formIpt">
-							<input type="password" v-model="FormData.Password" placeholder="Please enter password">
+							<input type="password" v-model="FormData.newPassword" placeholder="Please enter password">
 						</view>
 					</uni-forms-item>
 					<button class="submitBtn" form-type="submit" @click="formSubmit">submit</button>
@@ -92,8 +91,8 @@
 		data() {
 			return {
 				FormData: {
-					EmailCode: '',
-					Password: '',
+					captcha: '',
+					newPassword: '',
 				},
 				rules: {
 					EmailCode: {
@@ -274,6 +273,7 @@
 				everMarried:0,
 				workType:1,
 				residenceType:1,
+				genHealth:2,
 				race:1,
 				smokingStatus:0,
 				asthma:1,
@@ -282,7 +282,7 @@
 				heartDisease:0,
 				alcoholDrinking:1,
 				diabetic:1,
-				genHealth:2,
+				
 				stroke:1
 			},
 			SetContent:{
@@ -304,12 +304,12 @@
 				gender:{
 					gender:['Female', 'Male'],
 					active: false,
-					isSet: true,
+					isSet: false,
 				},
 				everMarried:{
 					everMarried:['Yes', 'No'],
 					active: false,
-					isSet: true,
+					isSet: false,
 				},
 				workType:{
 					workType:['Govt_job',
@@ -319,12 +319,12 @@
 					'Never_worked',
 				],
 				active: false,
-				isSet: true,
+				isSet: false,
 				},
 				residenceType:{
 					residenceType:['Rural', 'Urban'],
 					active: false,
-					isSet: true,
+					isSet: false,
 				},
 				race:{
 					race:['American Indian/Alaskan Native',
@@ -385,7 +385,7 @@
 				stroke:{
 					stroke:['Yes', 'No'],
 					active: false,
-					isSet: true,
+					isSet: false,
 				}
 			}
 			}
@@ -440,9 +440,6 @@
 				}
 
 			},
-			infoInput(e) {
-				console.log(e.detail)
-			},
 			goback() {
 				uni.navigateBack({
 					delta: 1
@@ -474,8 +471,8 @@
 				if (result.code == 1000) {
 					// 等写完接口
 					this.usernameEamil.email=result.data.email
-					this.userset[0]=[result.data]
-					console.log(this.userset[0])
+					this.userset=result.data
+					console.log(this.userset)
 					// for(let item in result.data){
 					// 	this.userset.forEach((item)=>{
 					// 		item
@@ -484,10 +481,9 @@
 				}
 			},
 			SetUsernameEamilCpt(name) {
-				console.log(name)
-				console.log(event.target._value)
 				this.newNameEmail[name] = event.target._value
 				this.usernameEamil = this.newNameEmail
+				console.log(this.usernameEamil)
 			},
 			async logOut() {
 				let result = await this.$requests.getHeartHistory()

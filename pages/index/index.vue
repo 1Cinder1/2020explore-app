@@ -240,7 +240,8 @@
 				}
 			},
 			async toArticle(id){
-				let result=await this.$requests.getArticleAdd(id)
+				console.log(id)
+				let result=await this.$requests.getArticleAdd(id*1)
 				if(result.code==1000){
 					uni.navigateTo({
 						url:'/pages/article/article'

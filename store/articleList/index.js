@@ -1,10 +1,10 @@
 import {getArticleList} from '@/api/request.js'
 const state={
-	aticleList:{}
+	articleList:[]
 }
 const mutations={
-	GETARTICLELIST(state,aticleList){
-		state.aticleList=aticleList
+	GETARTICLELIST(state,articleList){
+		state.articleList=articleList
 	}
 }
 const actions={
