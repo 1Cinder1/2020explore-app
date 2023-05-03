@@ -1,0 +1,113 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": { // 这里修改后一定要重启 HBuilderX（踩坑）
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+			//"^uni-(.*)": "@/components/uni-$1.vue", // 匹配components目录内的vue文件
+			"^vue-file-(.*)": "packageName/path/to/vue-file-$1.vue", // 匹配node_modules内的vue文件
+			"fui-(.*)": "firstui-uni/firstui/fui-$1/fui-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+		    "path" : "pages/start/start",
+		    "style" :                                                                                    
+		    {
+		        "navigationStyle": "custom",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/home/home",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/dataInput/dataInput",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/glucose/glucose",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,
+		{
+			"path": "pages/bmi/bmi",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
+            "path" : "pages/SignIn/SignIn",
+            "style" :                                                                                    
+            {
+                "navigationStyle": "custom",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/SignUp/SignUp",
+            "style" :                                                                                    
+            {
+                "navigationStyle": "custom",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+			"path": "pages/history/history",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		}
+        ,{
+            "path" : "pages/like/like",                                                                                  
+            "style": {
+            	"navigationStyle": "custom", // 隐藏系统导航栏
+            	"enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/article/article",
+            "style": {
+            	"navigationStyle": "custom", // 隐藏系统导航栏
+            	"enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

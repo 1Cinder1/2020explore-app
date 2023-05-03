@@ -1,0 +1,97 @@
+
+.navBarBox.data-v-92bb8f34 {}
+.navBarBox .statusBar.data-v-92bb8f34 {}
+.navBarBox .navBar.data-v-92bb8f34 {
+	padding: 3rpx 50px 20rpx 20rpx;
+	padding-bottom: 8rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.title .en.data-v-92bb8f34 {
+	color: rgb(178, 178, 180);
+	font-family: Inter;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 24px;
+}
+.title .num.data-v-92bb8f34 {
+	font-family: Inter;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 51px;
+}
+.pic.data-v-92bb8f34 {
+	margin: -30px 0;
+}
+.index.data-v-92bb8f34 {
+	color: rgb(178, 178, 180);
+	font-family: Inter;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 24px;
+}
+.scroll-tab.data-v-92bb8f34 {
+	margin-top: 20px;
+	white-space: nowrap;
+}
+.card.data-v-92bb8f34 {
+	display: inline-block;
+	margin-left: 10px;
+}
+.card.data-v-92bb8f34:first-child {
+	margin-left: 0;
+}
+.scroll-tab.data-v-92bb8f34 {}
+.scroll-tab .card.data-v-92bb8f34 {
+	padding: 12px;
+	border-radius: 10px;
+}
+.scroll-tab .card.data-v-92bb8f34:nth-child(odd) {
+	background-color: rgb(183, 184, 220);
+}
+.scroll-tab .card.data-v-92bb8f34:nth-child(even) {
+	background-color: rgb(183, 221, 210);
+}
+.scroll-tab .card .top.data-v-92bb8f34 {
+	display: flex;
+	align-items: center;
+}
+.scroll-tab .card .top .icon.data-v-92bb8f34 {
+	margin-right: 16px;
+}
+.scroll-tab .card .top .text.data-v-92bb8f34 :first-child {
+	color: rgb(26, 33, 49);
+	font-family: Inter;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 19px;
+}
+.scroll-tab .card .top .text.data-v-92bb8f34 :last-child {
+	color: rgba(26, 33, 49, 0.4);
+	font-family: Inter;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 16px;
+}
+.scroll-tab .card .data.data-v-92bb8f34 {
+	color: rgb(26, 33, 49);
+	font-family: Inter;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	margin: 10px 0;
+}
+.scroll-tab .card .bottom.data-v-92bb8f34 {
+	padding: 4px 10px 4px 10px;
+	background: rgba(26, 33, 49, 0.1);
+	border-radius: 100px;
+	width: 60%;
+	text-align: center;
+}
+.scroll-tab .card ._img.data-v-92bb8f34 {
+	margin-right: 10px;
+	box-sizing: border-box;
+}
+
