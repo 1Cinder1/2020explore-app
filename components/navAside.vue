@@ -18,7 +18,9 @@
 				</navigator>
 			</view>
 			<view class="item">
-				<u-icon name="heart" labelColor="#ffffff" color="#ffffff" size="20" label="Like"></u-icon>
+				<navigator url="../like/like" oepn-type="redirect">
+					<u-icon name="heart" labelColor="#ffffff" color="#ffffff" size="20" label="Like"></u-icon>
+				</navigator>
 			</view>
 			<view class="item">
 				<navigator url="../settings/settings">

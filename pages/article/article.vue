@@ -10,7 +10,7 @@
 					<h3 class="atk-title"></h3>
 					<div style="display: flex; padding-top: 2px;">
 						<p class="article-publisher"></p>
-						<p class="article-category">脑健康</p>
+						<p class="article-category">健康</p>
 						<p class="article-ip">IP:Wuhan</p>
 					</div>
 				</view>
@@ -35,6 +35,7 @@
 
 <script>
 	import {authRequest, basicRequest, request} from "@/api/index.js"
+	import {getArticleLike,getArticleCollect} from "@/api/request.js"
 	var collectList = new Array();
 	var likeList = new Array();
 	var articleindex = 1;
@@ -44,54 +45,47 @@
 				icon1:'star',
 				icon2:'thumb-up',
 				imageTopUrl:'../../static/icon/pill.jpg',
-				starnum:100,
-				thumbnum:100,
+				starnum:0,
+				thumbnum:0,
 			}
+		},
+		onLoad(options) {
+			articleindex = options.articleId
 		},
 		methods: {
 			backOne() {
 				uni.navigateBack()
 			},
 			starclick(){
-				var articleindex = 1;
-				var collectBool = false;
-				authRequest({url:'/article/like-collect-list',method:'get'}).then((res)=>{
-					collectList = res.data.articleCollectList
-					if(articleindex == collectList[0].articleId){
-						console.log("-1")
-						//POST：收藏总数减一
-					}
-					else{
-						console.log("+1")
-						//POST：收藏总数加一
-					}
-					this.icon1 = (this.icon1 == "star" ? "star-fill" : "star")
-				})
+				var index = articleindex - 1;
+				getArticleCollect(articleindex)
+				authRequest({url:'/article/list',method:'get'}).then((res)=>{
+					this.starnum = res.data[index].collectCount
+				})	
+				
+				this.icon1 = (this.icon1 == "star" ? "star-fill" : "star")
 			},
-			thumbclick(){
-				authRequest({url:'/article/like-collect-list',method:'get'}).then((res)=>{
-					likeList = res.data.articleLikeList
-					if(articleindex == likeList[0].articleId){
-						console.log("-1")
-						//POST：点赞总数减一
-					}
-					else{
-						console.log("+1")
-						//POST：点赞总数加一
-					}
-					this.icon2 = (this.icon2 == "thumb-up" ? "thumb-up-fill" : "thumb-up")
-				})
+			thumbclick(){		
+				var index = articleindex - 1;
+				getArticleLike(articleindex)
+				
+				authRequest({url:'/article/list',method:'get'}).then((res)=>{
+					this.thumbnum = res.data[index].likeCount
+				})				
+				this.icon2 = (this.icon2 == "thumb-up" ? "thumb-up-fill" : "thumb-up")
 			}		
 		},
 		mounted() {
 			//GET：初始化时判断文章是否被用户点赞收藏
 			authRequest({url:'/article/like-collect-list',method:'get'}).then((res)=>{
+				
 				collectList = res.data.articleCollectList
 				likeList = res.data.articleLikeList
-				if(articleindex == collectList[0].articleId){
+				var index = articleindex - 1;
+				if(collectList.length != 0 && articleindex == collectList[index].articleId){
 					this.icon1 = "star-fill"
 				}
-				if(articleindex == likeList[0].articleId){
+				if(likeList.length != 0 && articleindex == likeList[index].articleId){
 					this.icon2 = "thumb-up-fill"
 				}
 			});
@@ -110,9 +104,8 @@
 				this.$el.querySelector('.toInsert').innerHTML = '<p>' + nonetitle + '</p>'
 				
 				//获取点赞收藏总数并渲染
-				console.log(res)
-				this.thumbnum = 1000
-				this.starnum = 1000
+				this.thumbnum = res.data[index].likeCount
+				this.starnum = res.data[index].collectCount
 		    });			
 		}
 	}
@@ -186,7 +179,7 @@ img{
 	position: absolute;
 	top:160px;
 	z-index: 20px;
-	max-width:440px;
+	max-width:87.5%;
 	overflow: hidden;
 }
 .article-self img{
