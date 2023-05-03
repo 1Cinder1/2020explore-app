@@ -60,8 +60,8 @@ export const reviseCaptcha=()=>{
 	return authRequest({url:'/revise-Captcha',method:'get'})
 }
 // 重置密码
-export const revisePassword=(captcha,newPassword)=>{
-	return authRequest({url:`/revise-password/${captcha}/${newPassword}`,method:'post'})
+export const revisePassword=({captcha,newPassword})=>{
+	return authRequest({url:`/revise-password?captcha=${captcha}&newPassword=${newPassword}`,method:'post'})
 }
 // 获取用户基本健康信息和用户信息
 export const getUserBasicInfo=()=>{
