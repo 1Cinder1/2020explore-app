@@ -1,5 +1,5 @@
 <template>
-	<view style="position: absolute;top: 0;background-color: #ecebed;">
+	<view class="all" style="position: absolute;top: 0;background-color: #ecebed;">
 		<view class="head">
 		<uni-icons class="back" style="font-size: 100rpx;" type="left" @click="changeShow"></uni-icons>
 		<input v-model='searchContent' class="searchIpt" @confirm="getSearchContent" type="text" :focus="isfocus">
@@ -7,7 +7,7 @@
 		
 		<view class="list">
 		<scroll-view  scroll-y="true" scroll-with-animation style="height:1450rpx;">
-		<view class="list-item" v-for="i in 10" :key="i">
+		<view class="list-item" @click="toArticle(item.articleId)" v-for="(item,index) in ArticleList" :key="index">
 			<view class="left">
 				<img src="../../../static/card/stroke.png" alt="">
 			</view>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import {debounce} from '@/util/debounce.js'
 	export default {
 		data() {
@@ -51,7 +52,6 @@
 		mounted(){
 			this.getArticleList()
 			this.isfocus=true
-			
 		},
 		methods: {
 			async getArticleList(){
@@ -61,11 +61,7 @@
 					//TODO handle the exception
 					alert(e.message)
 				}
-				
 			},
-			// getSearchContent:debounce(function(e){
-			// 	this.searchContent=e.detail.value
-			// },500),
 			getSearchContent(e){
 				this.searchContent=e.detail.value
 				console.log(e.detail.value)
@@ -76,7 +72,21 @@
 				// #endif
 				this.$parent.isShowSearch=false
 				this.searchContent=''
+			},
+			async toArticle(id){
+				let result=await this.$requests.getArticleAdd(id)
+				if(result.code==1000){
+					uni.navigateTo({
+						url:'/pages/article/article'
+					})
+				}
 			}
+		},
+		computed:{
+			...mapState({
+				ArticleList:state=>state.articleList.articleList
+			})
+			
 		}
 	}
 </script>

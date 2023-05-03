@@ -46,7 +46,16 @@
 			}
 
 		}
-	    ,{
+	    ,
+		{
+			"path": "pages/bmi/bmi",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		
+		},
+		{
             "path" : "pages/SignIn/SignIn",
             "style" :                                                                                    
             {
@@ -78,11 +87,18 @@
 			}
 		}
         ,{
-            "path" : "pages/like/like",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+            "path" : "pages/like/like",                                                                                  
+            "style": {
+            	"navigationStyle": "custom", // 隐藏系统导航栏
+            	"enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/article/article",
+            "style": {
+            	"navigationStyle": "custom", // 隐藏系统导航栏
+            	"enablePullDownRefresh": false
             }
             
         }
